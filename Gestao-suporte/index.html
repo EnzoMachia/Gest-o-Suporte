@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Gestão Suporte</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: white;
+        }
+
+        h1 {
+            align-self: flex-end;
+            text-align: center;
+            color: black;
+        }
+
+        .ferra {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 80%;
+            width: 50%;
+            background-color: #343a40;
+            padding: 20px;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .integracoes,
+        .equipe,.metricas {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 10px;
+            width: 80%;
+        }
+
+        .integracoes {
+            background-color: black;
+        }
+
+        .equipe {
+            background-color: white;
+            color: black;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .adicionar,
+        .fechar,
+        .pendentes,
+        .cadastro,
+        .ranking, .metricas {
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 10px;
+            width: 80%;
+            opacity: 0;
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+            max-height: 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        .adicionar {
+            background-color: #007bff;
+        }
+
+        .adicionar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .fechar {
+            background-color: #dc3545;
+        }
+
+        .fechar:hover {
+            background-color: #c82333;
+            cursor: pointer;
+        }
+
+        .pendentes {
+            background-color: #ffc107;
+        }
+
+        .cadastro {
+            background-color: #28a745;
+        }
+
+        .cadastro:hover {
+            background-color: #218838;
+            cursor: pointer;
+        }
+
+        .ranking {
+            background-color: #17a2b8;
+        }
+
+        .ranking:hover {
+            background-color: #117a8b;
+            cursor: pointer;
+        }
+
+        .metricas {
+            background-color: #343a40;
+        }
+        .metricas:hover {
+            background-color: #23272b;
+            cursor: pointer;
+        }
+        .visible {
+            opacity: 1;
+            max-height: 100px; /* Ajuste conforme necessário */
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Controle Suporte</h1>
+
+    <div class="ferra">
+        <div class="equipe">
+            <p>Equipe</p>
+            <a href="Equipe/cadastro.php">
+                <div class="cadastro">
+                    <p>Cadastro de Equipe</p>
+                </div>
+            </a>
+            <a href="Equipe/ranking.php">
+                <div class="ranking">
+                    <p>Ranking Equipe</p>
+                </div>
+            </a>
+            <a href="Equipe/metricas.php">
+                <div class="metricas">
+                    <p>Métricas Gerais</p>
+                </div>
+            </a>
+        </div>
+        <div class="integracoes">
+            <p>Integrações</p>
+            <a href="integrações/adicionar.php">
+                <div class="adicionar">
+                    <p>Adicionar Integrações</p>
+                </div>
+            </a>
+            <a href="integrações/fechar.php">
+                <div class="fechar">
+                    <p>Fechamento Integrações</p>
+                </div>
+            </a>
+            <a href="integrações/pendentes.php">
+                <div class="pendentes">
+                    <p>Integrações Pendentes</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const integracoes = document.querySelector('.integracoes');
+    const equipe = document.querySelector('.equipe');
+    const adicionar = document.querySelector('.adicionar');
+    const fechar = document.querySelector('.fechar');
+    const pendentes = document.querySelector('.pendentes');
+    const cadastro = document.querySelector('.cadastro');
+    const ranking = document.querySelector('.ranking');
+    const metricas = document.querySelector('.metricas');
+
+    integracoes.addEventListener('click', () => {
+        [adicionar, fechar, pendentes].forEach(element => {
+            if (element.classList.contains('visible')) {
+                
+                element.classList.remove('visible');
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 500); // Tempo da transição em milissegundos
+            } else {
+                element.style.display = 'block';
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, 10); // Pequeno atraso para garantir que display: block é aplicado antes da transição
+            }
+        });
+    });
+
+    equipe.addEventListener('click', () => {
+        [cadastro, ranking, metricas].forEach(element => {
+            if (element.classList.contains('visible')) {
+                element.classList.remove('visible');
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 500); // Tempo da transição em milissegundos
+            } else {
+                element.style.display = 'block';
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, 10); // Pequeno atraso para garantir que display: block é aplicado antes da transição
+            }
+        });
+    });
+</script>
